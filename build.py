@@ -15,12 +15,12 @@ def build(src = "src", dest = "build"):
 		if os.path.isfile(getpath):
 			
 			if getpath.endswith(".html"):
-				with open(getpath, "r") as f:
+				with open(getpath, "r", encoding="utf8") as f:
 					contents = f.read()
 					
 					contents = re.sub(r"(href|src)=\"((?!http)[^/].+)\"", "\\g<1>=\"http://localhost/\\g<2>\"", contents)
 
-				with open(putpath, "w") as f:
+				with open(putpath, "w", encoding="utf8") as f:
 					f.write(contents)
 
 			else:
