@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="style.css"/>
+	</head>
+
+	<body>
+		<header>
+			<h1>🗺️ Welcome 🗺️<br/>📍 Happy hunting 📍</h1>
+		</header>
+		
+		<div class="options">
+
+			{% for option in options %}
+			<a class="option" href="{{ option.url }}">
+				<img src="{{ option.image }}"><br/>
+				<span>{{ option.label }}</span>
+			</a>
+			{% endfor %}
+			
+			<footer></footer>
+		</div>
+		
+	</body>
+</html>

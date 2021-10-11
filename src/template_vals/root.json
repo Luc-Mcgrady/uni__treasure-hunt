@@ -1,0 +1,14 @@
+{
+	"options": [
+		{
+			"url": "map.html",
+			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Soho_-_map_1.png/220px-Soho_-_map_1.png",
+			"label": "View the map"
+		},
+		{
+			"url": "map.html",
+			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Soho_-_map_1.png/220px-Soho_-_map_1.png",
+			"label": "Feign happiness"
+		}
+	]
+}
