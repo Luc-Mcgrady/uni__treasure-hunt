@@ -30,3 +30,23 @@ div#leaderboard {
 html {
 	background-color:lavender;
 }
+
+div.Question {
+	margin-top: 1vh;
+	padding-bottom: 1vh;
+	border-bottom: white 4px dotted;
+}
+
+input.correct {
+	border:lawngreen 2px solid;
+	border-radius: 2px;
+}
+
+input.incorrect {
+	border:tomato 2px solid;
+	border-radius: 2px;
+}
+
+input {
+	margin-top: 1vh;
+}
