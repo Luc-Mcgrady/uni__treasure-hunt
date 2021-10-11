@@ -75,20 +75,18 @@ class QuestionList extends React.Component {
 		if (this.name == "")
 			return
 
-		const storage = window.localStorage
-		var scores = storage.getItem("leaderboard")
-
-		if (!scores)
-			scores = "[]"
-
-		scores = JSON.parse(scores)
-
-		scores.push({"name":this.name, "score":this.score})
-		scores = JSON.stringify(scores)
-
+		const score = {
+			"action": "goto",
+			"where": "leaderboard",
+			"startvalue": 
+			{
+				"name":this.name,
+				"score":this.score
+			}
+		}
+		
+		window.AppInventor.setWebViewString(JSON.stringify(score));
 		this.submit = () => {}
-		storage.setItem("leaderboard", scores)
-		window.location.replace("quizNSleaderboard.html")
 	}
 
 	render() {

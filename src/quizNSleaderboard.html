@@ -1,13 +1,28 @@
 
+<link rel="stylesheet" href="quizNS.css">
+
+<h1>Quiz leaderboard</h1>
+
+<h3>Player: Score</h3>
 <div id="leaderboard">
 </div>
 
 <script>
-	var scores = window.localStorage.getItem("leaderboard")
+function loadscores(scores) {
 	scores = scores.replace("\\", "\\\\").replace("<","\\<")
 	scores = JSON.parse(scores)
-	scores = scores.map(a => {return `${a.name}: ${a.score}`;})
-	scores = scores.join("<br/>")
+	scores.sort((a, b) => {
+		if (a.score == b.score)
+			return 0;
+		return a.score < b.score ? 1 : -1;
+		})
 
+	scores = scores.map(a => {
+		const winratio = a.score / scores[0].score
+		return `<p class="score" style="color: RGB(${(1 - winratio)  * 255},${winratio * 255},0)">${a.name}: ${a.score}</p>`;
+	})
+
+	scores = scores.join("")
 	document.getElementById("leaderboard").innerHTML = scores
+}
 </script>

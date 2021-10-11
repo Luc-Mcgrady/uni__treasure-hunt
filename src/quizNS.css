@@ -1,0 +1,32 @@
+:root {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+h1 {
+	color: white;
+	mix-blend-mode:multiply;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-image: linear-gradient(rgb(209, 77, 0), rgba(0, 206, 209, 0));
+}
+
+body {
+	margin:0;
+}
+
+h3 {
+	color: black;
+}
+
+div#leaderboard {
+	background: black;
+	width: 30ex;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 4vw;
+}
+
+html {
+	background-color:lavender;
+}

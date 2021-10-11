@@ -16,7 +16,7 @@
 			"name": "Test Site",
 			"request": "launch",
 			"type": "pwa-chrome",
-			"url": "${workspaceFolder}/src/quizNSquiz.html",
+			"url": "${file}",
 			"webRoot": "${workspaceFolder}"
 		}
 	]
