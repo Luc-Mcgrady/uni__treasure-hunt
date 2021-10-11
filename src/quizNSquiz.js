@@ -1,35 +1,102 @@
+const questions = [
+	{
+		question: "how many hands on a human finger?",
+		answer: "1"
+	},
+	{
+		question: "what is my name",
+		answer: "bob"
+	},
+]
 
 class Question extends React.Component {
 
 	constructor(props) {
 		super(props)
 		
-		this.state = props
+		this.state = {"revealed": false}
+		this.props.parentList.onReveal.push((() => {
+			this.setState({"revealed":true})
+			return this.correct()
+		}).bind(this))
 
-		this.in = React.createElement("input", {"key": 4, "type": "text", "onChange": this.onChange.bind(this)});
 		this.value = "";
-	}
-
-	submit(e) {
-		this.setState({"question": this.value})
 	}
 
 	onChange(e) {
 		this.value = e.target.value
 	}
 
+	correct() { 
+		return this.value == this.props.answer
+	}
+
+
 	render() {
-		return [
-				React.createElement("img", {"src": this.state.img,"key": 1}),
-				React.createElement("p",{"key": 2}, this.state.question ),
-				this.in,
-				React.createElement("input", {"type": "submit","key": 3, "onClick": this.submit.bind(this)})
+
+		let tBoxClass = ""
+		if (this.state.revealed)
+			 tBoxClass = this.correct() ? "correct" : "incorrect"
+			
+		return React.createElement("div", {"className":"Question"}, [
+				React.createElement("img", {"src": this.props.img,"key": 1}),
+				React.createElement("p",{"key": 2}, this.props.question ),
+				React.createElement("input", {"key": 4, "type": "text", "onChange": this.onChange.bind(this), "className": tBoxClass})
 			]
+		)
 	}
 }
 
-const container = document.getElementById("question")
+class QuestionList extends React.Component {
+	getQuestionType() { // used to get the "Question" class that will be used
+		return Question
+	}
+
+	constructor(props) {
+		super(props)
+
+		this.state = {"revealed": false}
+		this.questions = []
+		
+		this.onReveal = []
+		this.score = 0
+	}
+
+	submit() {
+		for (const func of this.onReveal)
+			this.score += func()
+		this.onReveal = []
+		this.setState({"revealed": true});
+	}
+
+	render() {
+		let questions = []
+		const qtype = this.getQuestionType()
+		for (const question of this.props.questions) {
+			questions.push(React.createElement(qtype, {...question, "parentList": this}))
+		}
+		
+		const labeltext = this.state.revealed ? `Your score is: ${ this.score }/${ questions.length}` : "Press the button to check your answers"
+
+		const onRevealed =  this.state.revealed ? [
+			React.createElement("br"),
+			React.createElement("span", null, "Name:"),
+			React.createElement("input", {"type": "text"}),
+			React.createElement("br"),
+			React.createElement("input", {"type": "submit", "value": "Submit to leaderboard"})
+		] : [];
+
+		return [
+			...questions ,
+			React.createElement("p",null,labeltext),
+			React.createElement("input", {"type": "submit","key": 3, "onClick": this.submit.bind(this), "disabled":this.state.revealed}),
+			...onRevealed
+		]
+	}
+}
+
+const container = document.getElementById("questions")
 ReactDOM.render(
-	React.createElement(Question, {"question": "hello world"})
+	React.createElement(QuestionList, {"questions": questions})
 	, container
 )
