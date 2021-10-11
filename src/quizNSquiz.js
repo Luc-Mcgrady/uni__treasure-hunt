@@ -1,14 +1,3 @@
-const questions = [
-	{
-		question: "how many hands on a human finger?",
-		answer: "1"
-	},
-	{
-		question: "what is my name",
-		answer: "bob"
-	},
-]
-
 class Question extends React.Component {
 
 	constructor(props) {

@@ -50,3 +50,7 @@ input.incorrect {
 input {
 	margin-top: 1vh;
 }
+
+img {
+	max-width: 100vw;
+}
