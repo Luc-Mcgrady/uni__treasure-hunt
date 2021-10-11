@@ -60,13 +60,35 @@ class QuestionList extends React.Component {
 		
 		this.onReveal = []
 		this.score = 0
+
+		this.name = ""
 	}
 
-	submit() {
+	check() {
 		for (const func of this.onReveal)
 			this.score += func()
 		this.onReveal = []
 		this.setState({"revealed": true});
+	}
+
+	submit() {
+		if (this.name == "")
+			return
+
+		const storage = window.localStorage
+		var scores = storage.getItem("leaderboard")
+
+		if (!scores)
+			scores = "[]"
+
+		scores = JSON.parse(scores)
+
+		scores.push({"name":this.name, "score":this.score})
+		scores = JSON.stringify(scores)
+
+		this.submit = () => {}
+		storage.setItem("leaderboard", scores)
+		window.location.replace("quizNSleaderboard.html")
 	}
 
 	render() {
@@ -76,20 +98,24 @@ class QuestionList extends React.Component {
 			questions.push(React.createElement(qtype, {...question, "parentList": this}))
 		}
 		
-		const labeltext = this.state.revealed ? `Your score is: ${ this.score }/${ questions.length}` : "Press the button to check your answers"
+		const labeltext = this.state.revealed ? `Your score is: ${ this.score }/${ questions.length }` : "Press the button to check your answers"
+
+		function onChange(e) {
+			this.name = e.target.value
+		}
 
 		const onRevealed =  this.state.revealed ? [
 			React.createElement("br"),
 			React.createElement("span", null, "Name:"),
-			React.createElement("input", {"type": "text"}),
+			React.createElement("input", {"type": "text", "onChange": onChange.bind(this)}),
 			React.createElement("br"),
-			React.createElement("input", {"type": "submit", "value": "Submit to leaderboard"})
+			React.createElement("input", {"type": "submit", "value": "Submit to leaderboard", "onClick": this.submit.bind(this)})
 		] : [];
 
 		return [
 			...questions ,
 			React.createElement("p",null,labeltext),
-			React.createElement("input", {"type": "submit","key": 3, "onClick": this.submit.bind(this), "disabled":this.state.revealed}),
+			React.createElement("input", {"type": "submit","key": 3, "onClick": this.check.bind(this), "disabled":this.state.revealed}),
 			...onRevealed
 		]
 	}

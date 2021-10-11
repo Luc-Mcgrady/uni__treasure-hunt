@@ -1,0 +1,13 @@
+
+<div id="leaderboard">
+</div>
+
+<script>
+	var scores = window.localStorage.getItem("leaderboard")
+	scores = scores.replace("\\", "\\\\").replace("<","\\<")
+	scores = JSON.parse(scores)
+	scores = scores.map(a => {return `${a.name}: ${a.score}`;})
+	scores = scores.join("<br/>")
+
+	document.getElementById("leaderboard").innerHTML = scores
+</script>
