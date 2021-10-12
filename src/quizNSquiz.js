@@ -53,16 +53,19 @@ class RadioQuestion extends Question {
 
 		for (const [i,possible] of this.props.possible.entries()) {
 			radioElements.push(
-				React.createElement("input", {
-					"type":"radio",
-					"id":radioId, 
-					"key":-i, 
-					"value":possible, 
-					"name":radioGroup,
-					"onChange": this.onChange.bind(this),
-					"disabled": this.state.revealed 
-				}),
-				React.createElement("label", {"htmlFor":radioId++}, possible)
+				React.createElement("div", null, [ // div so the labels dont get disconnected on overflow
+					React.createElement("input", {
+						"type":"radio",
+						"id":radioId, 
+						"key":-i, 
+						"value":possible, 
+						"name":radioGroup,
+						"onChange": this.onChange.bind(this),
+						"disabled": this.state.revealed 
+					}),
+					React.createElement("label", {"htmlFor":radioId++}, possible)
+					]
+				)
 			)	
 		}
 		
