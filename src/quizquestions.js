@@ -11,21 +11,21 @@
 
 const questions = [
 	{
-	  "question": "Identify The Dessert",
+	  "question": "Identify the dessert!",
 	  "possible": [
-		"Coffee Cake",
-		"Chocolate Cake",
+		"Coffee cake",
+		"Chocolate cake",
 		"pie",
 		"pizza"
 	  ],
-	  "answer": "Chocolate Cake",
+	  "answer": "Chocolate cake",
 	  "img": "http://www.softsteps.me/images/CAKE.jpg"
 	},
 	{
-	  "question": "Identify The Dessert",
+	  "question": "Identify the dessert!",
 	  "possible": [
-		"pumpkin Cake",
-		"Orange Tart",
+		"Pumpkin cake",
+		"Orange tart",
 		"Orange pie",
 		"pumpkin pie"
 	  ],
@@ -33,29 +33,29 @@ const questions = [
 	  "img": "https://lh3.googleusercontent.com/ieyN2H7_GJzbrofjEC4zpBhrYFbE2QySTCNp8ZIZBj3sW7HUHCkIW2WR5pMZKnEtPL-acYdpN5igKdzI_rICyA=w1280-h1280-c-rw-v1-e365"
 	},
 	{
-	  "question": "What Topping Do The Brownies Have?",
+	  "question": "What topping do the brownies have?",
 	  "possible": [
 		"Meringue",
 		"Custard",
 		"Cream",
-		"Ice Cream"
+		"Ice cream"
 	  ],
 	  "answer": "Cream",
 	  "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_focal-860x430,f_auto,q_auto:best/newscms/2017_07/1195780/food-elizabeth-heiskell-red-velvet-brownies-mississippi-mud-tease-today-170216-01.jpg"
 	},
 	{
-	  "question": "Identify The Dessert",
+	  "question": "Identify the dessert!",
 	  "possible": [
 		"Macaroons",
-		"Small Cookies",
+		"Small cookies",
 		"Macaron",
-		"Fancy Cookies"
+		"Fancy cookies"
 	  ],
 	  "answer": "Macaroons",
 	  "img": "macaroon.jpg"
 	},
 	{
-	  "question": "What Flavour Is The Muffin?",
+	  "question": "What flavour is the muffin?",
 	  "possible": [
 		"Chcocolate",
 		"Caramel",
@@ -66,29 +66,29 @@ const questions = [
 	  "img": "Coffeee.jpg"
 	},
 	{
-	  "question": "What Flavour Is The Ice Cream?",
+	  "question": "What flavour is the ice cream?",
 	  "possible": [
 		"Chocolate",
-		"CHCOCOLaTE",
+		"Chcocolate",
 		"Vanilla",
-		"Bubble Gum"
+		"Bubble gum"
 	  ],
 	  "answer": "Vanilla",
 	  "img": "https://static.wixstatic.com/media/fe011c_4a9da80143714691abda6829aad60fff~mv2.jpg/v1/fill/w_1000,h_881,al_c,q_85/fe011c_4a9da80143714691abda6829aad60fff~mv2.jpg"
 	},
 	{
-	  "question": "Identify The Dessert",
+	  "question": "Identify the dessert!",
 	  "possible": [
-		"Key Lime pie",
-		"apple Tart",
-		"Lime Tart",
+		"Key lime pie",
+		"apple tart",
+		"Lime tart",
 		"Sweet apple pie"
 	  ],
-	  "answer": "Key Lime pie",
+	  "answer": "Key lime pie",
 	  "img": "KeyLimepie.jpg"
 	},
 	{
-	  "question": "What Kind Of Dessert Is this",
+	  "question": "What kind of dessert is this?",
 	  "possible": [
 		"pie",
 		"Tart",
@@ -99,18 +99,18 @@ const questions = [
 	  "img": "Lemonmerinihe.jpg"
 	},
 	{
-	  "question": "Identify The Dessert",
+	  "question": "Identify the dessert!",
 	  "possible": [
-		"Raspberry Jelly",
-		"Raspberry Tart",
-		"Strawberry Tart",
-		"Berry Jelly"
+		"Raspberry jelly",
+		"Raspberry tart",
+		"Strawberry tart",
+		"Berry jelly"
 	  ],
-	  "answer": "Strawberry Tart",
+	  "answer": "Strawberry tart",
 	  "img": "Strawtart.jpg"
 	},
 	{
-	  "question": "What Flavour Is The Cake",
+	  "question": "What flavour is the cake?",
 	  "possible": [
 		"Marble",
 		"Coffee",
