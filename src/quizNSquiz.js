@@ -20,26 +20,43 @@ class Question extends React.Component {
 		return this.value == this.props.answer
 	}
 
+	renderInput(className) {
+		return React.createElement("input", {"key": 4, "type": "text", "onChange": this.onChange.bind(this), "className": className});
+	}
 
 	render() {
-
 		let tBoxClass = ""
 		if (this.state.revealed)
 			 tBoxClass = this.correct() ? "correct" : "incorrect"
-			
+
 		return React.createElement("div", {"className":"Question"}, [
 				React.createElement("img", {"src": this.props.img,"key": 1}),
 				React.createElement("p",{"key": 2}, this.props.question ),
-				React.createElement("input", {"key": 4, "type": "text", "onChange": this.onChange.bind(this), "className": tBoxClass})
+				this.renderInput(tBoxClass)
 			]
 		)
 	}
 }
 
-class QuestionList extends React.Component {
-	getQuestionType() { // used to get the "Question" class that will be used
-		return Question
+var radioId = 0
+class RadioQuestion extends Question {
+	renderInput(className) {
+		let radioElements = []
+		
+		const radioGroup = radioId;
+
+		for (const [i,possible] of this.props.possible.entries()) {
+			radioElements.push(
+				React.createElement("input", {"type":"radio","id":radioId, "key":-i, "value":possible, "name":radioGroup,"onChange": this.onChange.bind(this)}),
+				React.createElement("label", {"htmlFor":radioId++}, possible)
+			)	
+		}
+		
+		return React.createElement("form",{"className": className},radioElements)
 	}
+}
+
+class QuestionList extends React.Component {
 
 	constructor(props) {
 		super(props)
@@ -80,9 +97,11 @@ class QuestionList extends React.Component {
 
 	render() {
 		let questions = []
-		const qtype = this.getQuestionType()
+		
 		for (const question of this.props.questions) {
-			questions.push(React.createElement(qtype, {...question, "parentList": this}))
+
+			const qtype = question.possible ? RadioQuestion : Question
+			questions.push(React.createElement(qtype, {...question, "parentList": this}))	
 		}
 		
 		const labeltext = this.state.revealed ? `Your score is: ${ this.score }/${ questions.length }` : "Press the button to check your answers"
