@@ -21,7 +21,13 @@ class Question extends React.Component {
 	}
 
 	renderInput(className) {
-		return React.createElement("input", {"key": 4, "type": "text", "onChange": this.onChange.bind(this), "className": className});
+		return React.createElement("input", {
+			"key": 4,
+			"type": "text",
+			"onChange": this.onChange.bind(this),
+			"className": className,
+			"disabled": this.state.revealed
+		});
 	}
 
 	render() {
@@ -47,7 +53,15 @@ class RadioQuestion extends Question {
 
 		for (const [i,possible] of this.props.possible.entries()) {
 			radioElements.push(
-				React.createElement("input", {"type":"radio","id":radioId, "key":-i, "value":possible, "name":radioGroup,"onChange": this.onChange.bind(this)}),
+				React.createElement("input", {
+					"type":"radio",
+					"id":radioId, 
+					"key":-i, 
+					"value":possible, 
+					"name":radioGroup,
+					"onChange": this.onChange.bind(this),
+					"disabled": this.state.revealed 
+				}),
 				React.createElement("label", {"htmlFor":radioId++}, possible)
 			)	
 		}
