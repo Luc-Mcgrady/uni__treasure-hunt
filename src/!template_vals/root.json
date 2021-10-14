@@ -1,14 +1,19 @@
 {
 	"options": [
 		{
-			"url": "map.html",
-			"image": "smile.png",
-			"label": "Google maps"
+			"url": "loginlogin.html",
+			"image": "https://static.highsnobiety.com/thumbor/KK8MS6QCjpH10r3tc6vyVZxxw6I=/1600x1067/static.highsnobiety.com/wp-content/uploads/2020/01/30121703/new-emoji-2020-01.jpg",
+			"label": "Log out"
 		},
 		{
 			"url": "quizquiz.html",
 			"image": "https://echamicrobiology.com/app/uploads/2016/05/question-mark-character.jpg",
 			"label": "Do the quiz"
+		},
+		{
+			"url": "map.html",
+			"image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Maps_Pin_FullColor.max-1000x1000.png",
+			"label": "Google maps (embed example)"
 		}
 	]
 }
