@@ -13,6 +13,13 @@
 			"console": "integratedTerminal"
 		},
 		{
+			"name": "Host test server",
+			"type": "python",
+			"request": "launch",
+			"program": "host.py",
+			"console": "integratedTerminal",
+		},
+		{
 			"name": "Test Site",
 			"request": "launch",
 			"type": "pwa-chrome",
