@@ -48,6 +48,6 @@ div.options > a > img {
 	height: 50vh;
 }
 
-footer {
-	height: 25px
+html {
+	padding-bottom: 25px
 }
