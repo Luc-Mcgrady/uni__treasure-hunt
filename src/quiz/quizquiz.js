@@ -83,8 +83,6 @@ class QuestionList extends React.Component {
 		
 		this.onReveal = []
 		this.score = 0
-
-		this.name = ""
 	}
 
 	check() {
@@ -95,17 +93,10 @@ class QuestionList extends React.Component {
 	}
 
 	submit() {
-		if (this.name == "")
-			return
-
 		const score = {
 			"action": "goto",
 			"where": "leaderboard",
-			"startvalue": 
-			{
-				"name":this.name,
-				"score":this.score
-			}
+			"startvalue": this.score
 		}
 		
 		window.AppInventor.setWebViewString(JSON.stringify(score));
@@ -123,23 +114,13 @@ class QuestionList extends React.Component {
 		
 		const labeltext = this.state.revealed ? `Your score is: ${ this.score }/${ questions.length }` : "Press the button to check your answers"
 
-		function onChange(e) {
-			this.name = e.target.value
-		}
-
-		const onRevealed =  this.state.revealed ? [
-			React.createElement("br"),
-			React.createElement("span", null, "Name:"),
-			React.createElement("input", {"type": "text", "onChange": onChange.bind(this)}),
-			React.createElement("br"),
-			React.createElement("input", {"type": "submit", "value": "Submit to leaderboard", "onClick": this.submit.bind(this)})
-		] : [];
+		const submit_type = this.state.revealed ? "Submit to leaderboard" : "Submit"
+		const submit_func = this.state.revealed ? this.submit.bind(this) : this.check.bind(this)
 
 		return [
 			...questions ,
 			React.createElement("p",null,labeltext),
-			React.createElement("input", {"type": "submit","key": 3, "onClick": this.check.bind(this), "disabled":this.state.revealed}),
-			...onRevealed
+			React.createElement("input", {"type": "submit","key": 3, "onClick": submit_func, "value": submit_type}),
 		]
 	}
 }
