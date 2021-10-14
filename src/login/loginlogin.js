@@ -13,7 +13,9 @@ var fails = 0;
 function loginCallback(users) {
 	users = JSON.parse(users)
 
-	if (users[usernameTxt.value] === passwordTxt.value) {
+	const encrypted = CryptoJS.SHA256(passwordTxt.value).toString()
+
+	if (encrypted == users[usernameTxt.value]) {
 		window.location.replace("http://localhost/root.html")
 		setDBkey("username", usernameTxt.value)
 	}

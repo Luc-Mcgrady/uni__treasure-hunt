@@ -15,7 +15,7 @@ function submit() {
 
 function submitCallback(users) {
 	users = JSON.parse(users)
-	users[usernameTxt.value] = passwordTxt.value
+	users[usernameTxt.value] = CryptoJS.SHA256(passwordTxt.value).toString()
 
 	setDBkey("login", users)
 	window.location.replace("http://localhost/loginlogin.html")
