@@ -1,3 +1,9 @@
+const siteURL = "http://villach.city/appin/"
+
+if (window.AppInventor === undefined) // For debug
+	window.AppInventor = { setWebViewString: (str) => {
+		console.log("APP INVENTOR API SENT: ", str)
+	}}
 
 function genericAPI(req) {
 	window.AppInventor.setWebViewString(JSON.stringify(req))
