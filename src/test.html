@@ -1,0 +1,22 @@
+
+<script src="API.js"></script>
+
+<p id="response"></p>
+
+<script> 
+
+function setText(resp) {
+	document.querySelector("#response").innerHTML = resp
+}
+
+getURL(siteURL, "setText", {"playerName":"Nik", "noQuestions": 5, "appID": "myApp", "category": "baby"})
+
+/*genericAPI({
+
+	"action": "getURL",
+	"url": "?playerName=Nik&noQuestions=5&appID=myApp&category=baby",
+	"callback": "setText"
+
+})*/
+
+</script>
