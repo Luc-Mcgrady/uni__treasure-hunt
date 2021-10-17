@@ -5,8 +5,7 @@ class Question extends React.Component {
 		
 		this.state = {"revealed": false}
 		this.props.parentList.onReveal.push((() => {
-			this.setState({"revealed":true})
-			return this.correct()
+			return this
 		}).bind(this))
 
 		this.value = "";
@@ -86,8 +85,12 @@ class QuestionList extends React.Component {
 	}
 
 	check() {
-		for (const func of this.onReveal)
-			this.score += func()
+		for (const func of this.onReveal) {
+			const question = func()
+
+			this.score += question.correct()
+			question.setState({"revealed":true})
+		}
 		this.onReveal = []
 		this.setState({"revealed": true});
 	}
@@ -103,30 +106,23 @@ class QuestionList extends React.Component {
 		this.submit = () => {}
 	}
 
-	render() {
-		let questions = []
-		
-		for (const question of this.props.questions) {
-
+	static *renderQuestions( questions, list ) {
+		for (const question of questions) {
 			const qtype = question.possible ? RadioQuestion : Question
-			questions.push(React.createElement(qtype, {...question, "parentList": this}))	
+			yield React.createElement(qtype, {...question, "parentList": list})	
 		}
-		
+	}
+
+	render() {
 		const labeltext = this.state.revealed ? `Your score is: ${ this.score }/${ questions.length }` : "Press the button to check your answers"
 
 		const submit_type = this.state.revealed ? "Submit to leaderboard" : "Submit"
 		const submit_func = this.state.revealed ? this.submit.bind(this) : this.check.bind(this)
 
 		return [
-			...questions ,
+			...this.renderQuestions(this.props.questions, this) ,
 			React.createElement("p",null,labeltext),
 			React.createElement("input", {"type": "submit","key": 3, "onClick": submit_func, "value": submit_type}),
 		]
 	}
 }
-
-const container = document.getElementById("questions")
-ReactDOM.render(
-	React.createElement(QuestionList, {"questions": questions})
-	, container
-)
